@@ -1,14 +1,15 @@
-import { createAction, Action } from 'redux-actions';
-import { assign } from 'lodash';
+import { createAction } from 'redux-actions';
 
 import { Todo } from './model';
 
-export const ADD_TODO = 'ADD_TODO';
-export const DELETE_TODO = 'DELETE_TODO';
-export const EDIT_TODO = 'EDIT_TODO';
-export const COMPLETE_TODO = 'COMPLETE_TODO';
-export const COMPLETE_ALL = 'COMPLETE_ALL';
-export const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
+import {
+  ADD_TODO,
+  DELETE_TODO,
+  EDIT_TODO,
+  COMPLETE_TODO,
+  COMPLETE_ALL,
+  CLEAR_COMPLETED
+} from './constants/ActionTypes';
 
 const addTodo = createAction<Todo, string>(
   ADD_TODO,
@@ -22,7 +23,7 @@ const deleteTodo = createAction<Todo, Todo>(
 
 const editTodo = createAction<Todo, Todo, string>(
   EDIT_TODO,
-  (todo: Todo, newText: string) => <Todo>assign(todo, { text: newText })
+  (todo: Todo, newText: string) => ({ ...todo, text: newText })
 );
 
 const completeTodo = createAction<Todo, Todo>(
